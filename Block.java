@@ -1,59 +1,77 @@
-import java.awt.*;
-
 public class Block {
+    private int id;
     private char letter;
-    private double x;
-    private double y;
-    private Point gridSpace;
+    private int x;
+    private int y;
+    private int x_orig;
+    private int y_orig;
 
-    public Block() {
-        letter = ' ';
-        double x = -1;
-        double y = -1;
-        gridSpace = new Point(-1, -1);
+    private Block() {
+        setId(0);
+        setLetter(' ');
+        setX(-1);
+        setY(-1);
     }
-    
-    public Block(char letter) {
-        this.letter = letter;
-        double x = -1;
-        double y = -1;
-        gridSpace = new Point(-1, -1);
+
+    public Block(char _letter) {
+        this();
+        setLetter(_letter);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int _id) {
+        id = _id;
+    }
+
+    public int getX_orig() {
+        return x_orig;
+    }
+
+    public void setX_orig(int x_orig) {
+        this.x_orig = x_orig;
+    }
+
+    public int getY_orig() {
+        return y_orig;
+    }
+
+    public void setY_orig(int _y_orig) {
+        y_orig = _y_orig;
     }
 
     public char getLetter() {
         return letter;
     }
 
-    public double getX() {
+    public int getX() {
         return x;
     }
 
-    public double getY() {
+    public int getY() {
         return y;
     }
 
-    public Point getGridSpace() {
-        return gridSpace;
+    public void setLetter(char _letter) {
+        letter = _letter;
     }
 
-    public void setLetter(char letter) {
-        this.letter = letter;
+    public void setX(int _x) {
+        x = _x;
     }
 
-    public void setX(double x) {
-        this.x = x;
+    public void setY(int _y) {
+        y = _y;
     }
 
-    public void setY(double y) {
-        this.y = y;
+    @Override
+    public String toString() {
+        return "" + getLetter();
     }
 
-    public void setGridSpace(Point gridSpace) {
-        this.gridSpace = gridSpace;
+    public boolean isBlockEmpty() {
+        return (getLetter() == ' ');
     }
-
-    public boolean isBlockEmpty(Block block) {
-        return (block.getLetter() == ' ');
-    }
-
 }
