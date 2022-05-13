@@ -115,9 +115,9 @@ public final class GameBoard {
                     hand[j].setY(hand[j].getY_orig());
                 }
             }
-            if (grid[col][row].getLetter() != ' ') {
-                sbv.append(grid[col][row].getLetter());
-            } else if (grid[col][row].getLetter() == ' ') {
+            if (grid[8 - col][row].getLetter() != ' ') {
+                sbv.append(grid[8 - col][row].getLetter());
+            } else if (grid[8 - col][row].getLetter() == ' ') {
                 sbv.setLength(0);
             }
             if (grid[row][col].getLetter() != ' ') {
@@ -146,9 +146,9 @@ public final class GameBoard {
         for (String chunk : chunks) {
             chunk = chunk.replaceAll("\"", "");
             if (chunk.length() > 1) {
-                var reverse = new StringBuffer(chunk).reverse().toString();
+                //var reverse = new StringBuffer(chunk).reverse().toString();
                 dest.add(chunk);
-                dest.add(reverse);
+                //dest.add(reverse);
             }
         }
     }
@@ -157,8 +157,29 @@ public final class GameBoard {
         var _blocks = new Block[numblocks];
         for (int i = 0; i < numblocks; i++) {
             Random r = new Random();
-            char charLetter = (char) (r.nextInt(26) + 'A');
-            _blocks[i] = new Block(charLetter);
+            int nextInt = r.nextInt(32);
+            if(nextInt == 26) {
+                char charLetter = 'A';
+                _blocks[i] = new Block(charLetter);
+            } else if(nextInt == 27) {
+                char charLetter = 'E';
+                _blocks[i] = new Block(charLetter);
+            } else if(nextInt == 28) {
+                char charLetter = 'I';
+                _blocks[i] = new Block(charLetter);
+            } else if(nextInt == 29) {
+                char charLetter = 'O';
+                _blocks[i] = new Block(charLetter);
+            } else if(nextInt == 30) {
+                char charLetter = 'U';
+                _blocks[i] = new Block(charLetter);
+            } else if(nextInt == 31) {
+                char charLetter = 'Y';
+                _blocks[i] = new Block(charLetter);
+            } else {
+                char charLetter = (char) (nextInt + 'A');
+                _blocks[i] = new Block(charLetter);
+            }
         }
         return _blocks;
     }
@@ -247,7 +268,6 @@ public final class GameBoard {
 
     // Draw the grid for blocks
     private static void drawBoard() {
-
         for (int i = 0; i < square_Number * square_Number; i++) {
             int row = i / square_Number;
             int col = i % square_Number;
